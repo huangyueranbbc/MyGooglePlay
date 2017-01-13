@@ -13,9 +13,9 @@ public class GooglePlayApplication extends Application {
 
     // 定义全局公用变量
     private static Context context;
-    private Handler handler;
-    private int mainThreadId;
-    private int myPid;
+    private static Handler handler;
+    private static int mainThreadId;
+    private static int myPid;
 
     @Override
     public void onCreate() {
@@ -32,15 +32,15 @@ public class GooglePlayApplication extends Application {
         return context;
     }
 
-    public Handler getHandler() {
+    public static Handler getHandler() {
         return handler;
     }
 
-    public int getMainThreadId() {
+    public static int getMainThreadId() {
         return mainThreadId;
     }
 
-    public int getMyPid() {
+    public static int getMyPid() {
         return myPid;
     }
 }
