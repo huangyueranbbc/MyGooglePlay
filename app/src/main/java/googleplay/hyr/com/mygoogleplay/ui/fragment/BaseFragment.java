@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import googleplay.hyr.com.mygoogleplay.ui.view.LoadingPage;
 import googleplay.hyr.com.mygoogleplay.utils.UIUtils;
 
@@ -59,5 +61,26 @@ public abstract class BaseFragment extends Fragment {
         if (mLoadingPage != null) {
             mLoadingPage.loadData();
         }
+    }
+
+    /**
+     * 校验结果数据是否正确，并返回状态值
+     *
+     * @param o
+     * @return
+     */
+    public LoadingPage.ResultState check(Object o) {
+        if (o != null) {
+            if (o instanceof ArrayList) { // 判断是否是集合
+                ArrayList list = (ArrayList) o;
+                if (list.isEmpty()) {
+                    return LoadingPage.ResultState.STATE_EMPTY;
+                } else {
+                    return LoadingPage.ResultState.STATE_SUCCESS;
+                }
+            }
+        }
+
+        return LoadingPage.ResultState.STATE_ERROR;
     }
 }

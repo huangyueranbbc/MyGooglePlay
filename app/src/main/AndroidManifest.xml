@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="googleplay.hyr.com.mygoogleplay">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="googleplay.hyr.com.mygoogleplay.global.GooglePlayApplication"
         android:allowBackup="true"

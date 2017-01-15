@@ -4,6 +4,14 @@
         "source": "E:\\AndroidStudioWorkspaces\\sample\\library\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkspaces\\MyGooglePlay\\ViewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
+        "source": "E:\\AndroidStudioWorkspaces\\MyGooglePlay\\ViewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkspaces\\MyGooglePlay\\ViewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
+        "source": "E:\\AndroidStudioWorkspaces\\MyGooglePlay\\ViewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkspaces\\sample\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
         "source": "E:\\AndroidStudioWorkspaces\\sample\\library\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
     }
