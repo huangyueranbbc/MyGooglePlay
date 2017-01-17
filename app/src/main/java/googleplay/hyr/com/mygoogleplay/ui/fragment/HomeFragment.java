@@ -11,6 +11,7 @@ import googleplay.hyr.com.mygoogleplay.ui.adapter.MyBaseAdapter;
 import googleplay.hyr.com.mygoogleplay.ui.holder.BaseHolder;
 import googleplay.hyr.com.mygoogleplay.ui.holder.HomeHolder;
 import googleplay.hyr.com.mygoogleplay.ui.view.LoadingPage;
+import googleplay.hyr.com.mygoogleplay.ui.view.MyListView;
 import googleplay.hyr.com.mygoogleplay.utils.UIUtils;
 
 /**
@@ -29,7 +30,7 @@ public class HomeFragment extends BaseFragment {
      */
     @Override
     public View onCreateSuccessView() {
-        ListView listView = new ListView(UIUtils.getContext());
+        ListView listView = new MyListView(UIUtils.getContext());
         listView.setAdapter(new HomeAdapter(data));
         return listView;
     }

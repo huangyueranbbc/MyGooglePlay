@@ -26,7 +26,7 @@ public class FragmentFactory {
                     fragment = new GameFragment();
                     break;
                 case 3:
-                    fragment = new SubjjectFragment();
+                    fragment = new SubjectFragment();
                     break;
                 case 4:
                     fragment = new RecommendFragment();

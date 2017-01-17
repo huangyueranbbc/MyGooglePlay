@@ -15,9 +15,10 @@ import googleplay.hyr.com.mygoogleplay.utils.BitmapHelper;
 import googleplay.hyr.com.mygoogleplay.utils.UIUtils;
 
 /**
+ * 应用holder
  * Created by huangyueran on 2017/1/15.
  */
-public class HomeHolder extends BaseHolder<AppInfo> {
+public class AppHolder extends BaseHolder<AppInfo> {
 
     private TextView tvName, tvSize, tvDesc;
     private ImageView ivIcon;
