@@ -17,8 +17,6 @@ import googleplay.hyr.com.mygoogleplay.utils.UIUtils;
  */
 public abstract class BaseProtocol<T> {
 
-    private Object dataFromServer;
-
     /**
      * 获取数据
      *

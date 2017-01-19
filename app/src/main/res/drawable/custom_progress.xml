@@ -7,16 +7,15 @@
             android:fromDegrees="0"
             android:pivotX="50%"
             android:pivotY="50%"
-            android:toDegrees="720"></rotate>
+            android:toDegrees="720" />
     </item>
-
     <item>
         <rotate
             android:drawable="@drawable/spinner_big_outer"
             android:fromDegrees="360"
             android:pivotX="50%"
             android:pivotY="50%"
-            android:toDegrees="0"></rotate>
+            android:toDegrees="0" />
     </item>
 
 </layer-list>

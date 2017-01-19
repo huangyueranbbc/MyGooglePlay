@@ -1,14 +1,18 @@
 package googleplay.hyr.com.mygoogleplay.ui.fragment;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import googleplay.hyr.com.mygoogleplay.http.protocol.HomeProtocol;
 import googleplay.hyr.com.mygoogleplay.pojo.AppInfo;
+import googleplay.hyr.com.mygoogleplay.ui.activity.HomedetailActivity;
 import googleplay.hyr.com.mygoogleplay.ui.adapter.MyBaseAdapter;
 import googleplay.hyr.com.mygoogleplay.ui.holder.BaseHolder;
+import googleplay.hyr.com.mygoogleplay.ui.holder.HomeHeaderHolder;
 import googleplay.hyr.com.mygoogleplay.ui.holder.HomeHolder;
 import googleplay.hyr.com.mygoogleplay.ui.view.LoadingPage;
 import googleplay.hyr.com.mygoogleplay.ui.view.MyListView;
@@ -22,6 +26,7 @@ public class HomeFragment extends BaseFragment {
 
 
     private ArrayList<AppInfo> data; // 加载到的网络数据
+    private ArrayList<String> mPictureList;
 
     /**
      * 如果加载数据成功，就回调此方法，在主线程中执行，可以修改界面
@@ -31,7 +36,32 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateSuccessView() {
         ListView listView = new MyListView(UIUtils.getContext());
+
+        //给listview添加头布局
+        HomeHeaderHolder homeHeaderHolder = new HomeHeaderHolder();
+        listView.addHeaderView(homeHeaderHolder.getRootView());
+
         listView.setAdapter(new HomeAdapter(data));
+
+        // 设置轮播条数据
+        if (mPictureList != null) {
+            homeHeaderHolder.setData(mPictureList);
+        }
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AppInfo appInfo = data.get(position - 1); //去掉头布局
+
+                if (appInfo != null) {
+                    Intent intent = new Intent(UIUtils.getContext(), HomedetailActivity.class);
+                    intent.putExtra("packageName", appInfo.getPackageName()); // 传递包名数据
+                    startActivity(intent);
+                }
+
+            }
+        });
+
         return listView;
     }
 
@@ -45,6 +75,7 @@ public class HomeFragment extends BaseFragment {
         // 请求网络
         HomeProtocol protocol = new HomeProtocol();
         data = protocol.getData(0);// 加载第一页数据
+        mPictureList = protocol.getPictureList(); // 轮播条图片数据
 
         return check(data); // 校验数据并返回状态
     }
@@ -62,7 +93,7 @@ public class HomeFragment extends BaseFragment {
          * @return
          */
         @Override
-        public BaseHolder<AppInfo> getHolder() {
+        public BaseHolder<AppInfo> getHolder(int position) {
             return new HomeHolder();
         }
 

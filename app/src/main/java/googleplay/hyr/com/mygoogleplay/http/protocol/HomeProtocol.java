@@ -15,6 +15,8 @@ import googleplay.hyr.com.mygoogleplay.pojo.AppInfo;
 public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
 
 
+    private ArrayList<String> pictures;
+
     @Override
     public String getKey() {
         return "home";
@@ -52,7 +54,7 @@ public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
 
             // 初始化轮播条的数据
             JSONArray jsonArray1 = jsonObject.getJSONArray("picture");
-            ArrayList<String> pictures = new ArrayList<String>();
+            pictures = new ArrayList<String>();
             for (int i = 0; i < jsonArray1.length(); i++) {
                 String pic = jsonArray1.getString(i);
                 pictures.add(pic);
@@ -65,5 +67,14 @@ public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
         }
 
         return null;
+    }
+
+    /**
+     * 返回轮播条图片数据
+     *
+     * @return
+     */
+    public ArrayList<String> getPictureList() {
+        return pictures;
     }
 }

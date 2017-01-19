@@ -18,8 +18,9 @@ import googleplay.hyr.com.mygoogleplay.utils.UIUtils;
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
     // 必须从0开始声明
-    private static final int TYPE_NORMAL = 0; // 正常布局类型
-    private static final int TYPE_MORE = 1; //加载更多布局类型
+    private static final int TYPE_MORE = 0; //加载更多布局类型
+    private static final int TYPE_NORMAL = 1; // 正常布局类型
+
 
     private ArrayList<T> data; //全局的list
     private boolean isLoadMore = false; //标记是否正在加载更多
@@ -55,7 +56,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
                 // 加载更多布局对象
                 holder = new MoreHolder(hasMore());
             } else {
-                holder = getHolder(); //子类返回具体对象
+                holder = getHolder(position); //子类返回具体对象
             }
         } else {
             holder = (BaseHolder) convertView.getTag();
@@ -108,14 +109,14 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         if (position == getCount() - 1) {//最后一个布局
             return TYPE_MORE; // 加载更多
         } else {
-            return getInnerType(); // 普通布局
+            return getInnerType(position); // 普通布局
         }
     }
 
     /**
      * 返回默认类型 子类可以重写此方法修改返回的类型
      */
-    public int getInnerType() {
+    public int getInnerType(int position) {
         return TYPE_NORMAL;
     }
 
@@ -124,7 +125,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
      *
      * @return
      */
-    public abstract BaseHolder<T> getHolder();
+    public abstract BaseHolder<T> getHolder(int position);
 
     /**
      * 加载更多数据
