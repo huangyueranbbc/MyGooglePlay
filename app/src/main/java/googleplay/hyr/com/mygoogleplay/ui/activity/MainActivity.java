@@ -5,7 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.MenuItem;
 
 import googleplay.hyr.com.mygoogleplay.R;
 import googleplay.hyr.com.mygoogleplay.ui.fragment.BaseFragment;
@@ -18,6 +21,7 @@ public class MainActivity extends BaseActivity {
     private PagerTab mPagerTab;
 
     private ViewPager mViewPager;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +60,41 @@ public class MainActivity extends BaseActivity {
         initActionBar();
     }
 
+    /**
+     * 初始化actionBar
+     */
     private void initActionBar() {
-        // 获取actionbar对象
-        ActionBar actionBar = getSupportActionBar();
-        // 左上角显示logo
-        actionBar.setHomeButtonEnabled(true);
-        // 左上角显示返回图标, 和侧边栏绑定后显示侧边栏图标
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        ActionBar actionbar = getSupportActionBar();
+
+        actionbar.setHomeButtonEnabled(true);// home处可以点击
+        actionbar.setDisplayHomeAsUpEnabled(true);// 显示左上角返回键,当和侧边栏结合时展示三个杠图片
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+
+        // 初始化抽屉开关
+        toggle = new ActionBarDrawerToggle(this, drawer, R.string.drawer_open, R.string.drawer_close);
+        toggle.syncState();// 同步状态, 将DrawerLayout和开关关联在一起
+    }
+
+    /**
+     * 拦截返回键点击事件
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // 切换抽屉
+                toggle.onOptionsItemSelected(item);
+                break;
+
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     class MyPagerAdapter extends FragmentPagerAdapter {
