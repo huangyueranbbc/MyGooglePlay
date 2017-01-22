@@ -12,6 +12,7 @@ import googleplay.hyr.com.mygoogleplay.http.protocol.HomeDetailProtocol;
 import googleplay.hyr.com.mygoogleplay.pojo.AppInfo;
 import googleplay.hyr.com.mygoogleplay.ui.holder.DetailAppInfoHolder;
 import googleplay.hyr.com.mygoogleplay.ui.holder.DetailDesHolder;
+import googleplay.hyr.com.mygoogleplay.ui.holder.DetailDownloadHolder;
 import googleplay.hyr.com.mygoogleplay.ui.holder.DetailPicsHolder;
 import googleplay.hyr.com.mygoogleplay.ui.holder.DetailSafeHolder;
 import googleplay.hyr.com.mygoogleplay.ui.view.LoadingPage;
@@ -105,6 +106,11 @@ public class HomedetailActivity extends BaseActivity {
         flDeatilDes.addView(detailDesHolder.getRootView());
         detailDesHolder.setData(data);
 
+        // 初始化下载模块
+        FrameLayout flDeatilDownload = (FrameLayout) view.findViewById(R.id.fl_detail_download);
+        DetailDownloadHolder detailDownloadHolder = new DetailDownloadHolder();
+        flDeatilDownload.addView(detailDownloadHolder.getRootView());
+        detailDownloadHolder.setData(data);
         return view;
     }
 

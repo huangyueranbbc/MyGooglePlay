@@ -1,5 +1,7 @@
 package googleplay.hyr.com.mygoogleplay.ui.activity;
 
+import android.Manifest;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +11,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import googleplay.hyr.com.mygoogleplay.R;
 import googleplay.hyr.com.mygoogleplay.ui.fragment.BaseFragment;
@@ -27,6 +32,17 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            List<String> permissions = new ArrayList<String>();
+
+            permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if (!permissions.isEmpty()) {
+                requestPermissions(permissions.toArray(new String[permissions.size()]), 1);
+            }
+        }
 
         mPagerTab = (PagerTab) findViewById(R.id.pager_tab);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
